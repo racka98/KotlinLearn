@@ -36,4 +36,7 @@ fun main(args: Array<String>) {
     })
 
     val thisIsALambda: (Int) -> Unit = { t: Int -> println(t) }        //Lambda Expression / Function
+    program.addTwoNums(2, 5, thisIsALambda)
+    program.addTwoNums(2, 5, { t: Int -> println(t)})       //You can also pass the expression in the function
+
 }
