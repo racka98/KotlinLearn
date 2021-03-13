@@ -1,4 +1,5 @@
 import aquarium.separator
+import kotlin.random.Random
 
 //Constants: const val is set at compile time while val is set at execution
 //Since const val is set at compile time we can not pass a function to set its value
@@ -15,6 +16,37 @@ object Constant {
 class MyClass {
     companion object {
         const val thisIsAConstant3 = "inside a companion object"
+    }
+}
+private class BookPairs(val title: String, val author: String, val year: Int) {
+    fun bookPair(): Pair<String, String> {
+        return title to author
+    }
+
+    fun triplePair(): Triple<String, String, Int> {
+        return Triple<String, String, Int>(title, author, year)
+    }
+}
+
+
+class BookBorrowed(val title: String, val numberOfBooks: Int, var pages: Int) {
+    fun canBorrow(): Boolean {
+        return numberOfBooks < maximumBooks
+    }
+    companion object Constants { const val BASE_URL = "https://thislibrary.com/" }
+
+    fun printUrl() = println("URL: $BASE_URL${title.toLowerCase()}.html")
+}
+//Extension function
+fun BookBorrowed.weight() = pages * 1.5     //number of pages multiply by 1.5 grams
+fun BookBorrowed.tornPages(tornPages: Int) = if (pages >= tornPages) pages -= tornPages else pages = 0
+
+class Puppy() {
+    fun playWithBook(book: BookBorrowed): Int {
+        val removedPages: Int = Random.nextInt(12) //Logically the puppy can't tear a large number of pages at once
+        println("Pages removed: $removedPages")
+        book.tornPages(removedPages)
+        return book.pages
     }
 }
 
@@ -51,27 +83,30 @@ fun main(args: Array<String>) {
     val constant = Constant.thisIsAConstant2
     println(constant)
     separator()
-    val james = BookBorrowed("KotlinEssentials", 5)
+    val james = BookBorrowed("KotlinEssentials", 5, 200)
     println("Can borrow: ${james.canBorrow()}")
     james.printUrl()
     separator()
 
-}
-private class BookBorrowed(val title: String, val numberOfBooks: Int) {
-    fun canBorrow(): Boolean {
-        return numberOfBooks < maximumBooks
+    //Calling the extension functions and method functions of BookBorrowed
+    val borrowed = BookBorrowed("KT for Android", 2, 350)
+    println("Weight of the book: ${borrowed.weight()}")
+    println("Original Page number: ${borrowed.pages}")
+    borrowed.tornPages(98)
+    println("Pages after being torn: ${borrowed.pages}")
+    val puppy = Puppy()
+    var count1: Int = 0
+    var pagesCount = borrowed.pages
+    separator()
+    while (borrowed.pages > 0) {
+        separator(separator = "+")
+        puppy.playWithBook(borrowed)
+        count1++
+        println("Round: $count1 completed \n" +
+                "Pages left: ${borrowed.pages}")
     }
-    companion object Constants { const val BASE_URL = "https://thislibrary.com/" }
+    println("Puppy has demolished the ${borrowed.title} book :(")
+    separator()
 
-    fun printUrl() = println("URL: $BASE_URL${title.toLowerCase()}.html")
 }
 
-private class BookPairs(val title: String, val author: String, val year: Int) {
-    fun bookPair(): Pair<String, String> {
-        return title to author
-    }
-
-    fun triplePair(): Triple<String, String, Int> {
-        return Triple<String, String, Int>(title, author, year)
-    }
-}
