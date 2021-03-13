@@ -32,7 +32,7 @@ fun main() {
     val empty = mxdiflg(arrayOf("hey", "jukk", "jjdkhhdkl"), arrayOf())
     println(ans)
     println(empty)
-    separator(5)
+    separator(n = 5)
     val alternate = mxdiflgAlternate(
         arrayOf("hoqq", "bbllkw", "oox", "ejjuyyy", "plmiis", "xxxzgpsssa", "xxwwkktt", "znnnnfqknaz", "qqquuhii", "dvvvwz"),
         arrayOf("cccooommaaqqoxii", "gggqaffhhh", "tttoowwwmmww")

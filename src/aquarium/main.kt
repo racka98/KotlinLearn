@@ -33,7 +33,7 @@ private fun buildAquarium() {       // Private: Wont be accessible anywhere else
     separator()
 }
 
-fun separator(n: Int = 30) = println("*".repeat(n))
+fun separator(separator: String = "*",n: Int = 30) = println(separator.repeat(n))
 
 fun feedTheFish(fish: FishAction) {
     fish.eat()
