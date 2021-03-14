@@ -50,6 +50,11 @@ class Puppy() {
     }
 }
 
+// Generic classes declared by <T> after class name. They can hold data on generic type
+class MyList<T> {
+
+}
+
 fun main(args: Array<String>) {
     val book = BookPairs("KTX", "Google", 2020).triplePair()
     println("Here is your book ${book.first} written by ${book.second} in ${book.third}.")
@@ -107,6 +112,4 @@ fun main(args: Array<String>) {
     }
     println("Puppy has demolished the ${borrowed.title} book :(")
     separator()
-
 }
-

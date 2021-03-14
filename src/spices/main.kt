@@ -19,8 +19,8 @@ fun main(args: Array<String>) {
 
     val spiceList = spices1.filter { it.heat >= 3 }
     separator(n = 40)
-    for (spice in spiceList) {
-        println("Name : ${spice.name}, Spiciness : ${spice.spiciness}")
+    for (spices in spiceList) {
+        println("Name : ${spices.name}, Spiciness : ${spices.spiciness}")
         separator(n = 40)
     }
 
