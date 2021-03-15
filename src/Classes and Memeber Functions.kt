@@ -1,6 +1,7 @@
 class Car(val make: String, val year: Int) {
 
     var speed: Int = 0
+    //Member functions
     fun accelerate(times: Int) {
         for (i in 1..times) speed += 5
         println(speed)
